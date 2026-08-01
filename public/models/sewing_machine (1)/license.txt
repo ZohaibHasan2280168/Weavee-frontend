@@ -1,0 +1,11 @@
+Model Information:
+* title:	sewing machine
+* source:	https://sketchfab.com/3d-models/sewing-machine-bb71e55e0bd0430b83adae77830c245d
+* author:	nguyentrongtam0512 (https://sketchfab.com/nguyentrongtam1998)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "sewing machine" (https://sketchfab.com/3d-models/sewing-machine-bb71e55e0bd0430b83adae77830c245d) by nguyentrongtam0512 (https://sketchfab.com/nguyentrongtam1998) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

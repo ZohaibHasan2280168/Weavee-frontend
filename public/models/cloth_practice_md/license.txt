@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cloth Practice (MD)
+* source:	https://sketchfab.com/3d-models/cloth-practice-md-5a0900dbd71542d082ff7b32a78205b5
+* author:	Edi Santoso (https://sketchfab.com/edisan27)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cloth Practice (MD)" (https://sketchfab.com/3d-models/cloth-practice-md-5a0900dbd71542d082ff7b32a78205b5) by Edi Santoso (https://sketchfab.com/edisan27) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

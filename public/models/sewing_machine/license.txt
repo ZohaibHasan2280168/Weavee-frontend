@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sewing Machine
+* source:	https://sketchfab.com/3d-models/sewing-machine-1e46878101394d4598dac171399686a5
+* author:	Tom Seddon (https://sketchfab.com/bloodmeat08)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sewing Machine" (https://sketchfab.com/3d-models/sewing-machine-1e46878101394d4598dac171399686a5) by Tom Seddon (https://sketchfab.com/bloodmeat08) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,108 @@
+/* src/index.css */
+@import "tailwindcss";
+
+/* Enable class-based dark mode strategy for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Brand & Accent Colors */
+  --color-brand-primary: #3b82f6;
+  --color-brand-primary-hover: #2563eb;
+  --color-brand-disabled: #d1d5db;
+  --color-accent-emerald: #10b981;
+  --color-accent-amber: #f59e0b;
+  --color-accent-red: #ef4444;
+  --color-accent-purple: #8b5cf6;
+  --color-accent-cyan: #06b6d4;
+  --color-accent-pink: #ec4899;
+
+  /* Theme Mapped Colors (Dynamic utilities like bg-theme-body) */
+  --color-theme-body: var(--body-bg);
+  --color-theme-card: var(--card-bg);
+  --color-theme-card-hover: var(--card-hover-bg);
+  --color-theme-input: var(--input-bg);
+  --color-theme-dropdown: var(--dropdown-bg);
+
+  --color-theme-text: var(--text-primary);
+  --color-theme-text-secondary: var(--text-secondary);
+  --color-theme-text-muted: var(--text-muted);
+  --color-theme-text-inverse: var(--text-inverse);
+
+  --color-theme-border: var(--border-default);
+  --color-theme-border-light: var(--border-light);
+
+  /* Background Gradients */
+  --background-image-main: var(--main-bg);
+}
+
+/* Light Theme Variables */
+:root, :root.light {
+  color-scheme: light;
+  --main-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --body-bg: #f5f7fa;
+  --card-bg: #ffffff;
+  --card-hover-bg: #f9fafb;
+  --input-bg: #ffffff;
+  --dropdown-bg: rgba(255, 255, 255, 0.98);
+
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --text-inverse: #ffffff;
+
+  --border-light: #e5e7eb;
+  --border-default: #d1d5db;
+}
+
+/* Dark Theme Variables */
+:root.dark {
+  color-scheme: dark;
+  --main-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --body-bg: #0f1419;
+  --card-bg: #1a1f35;
+  --card-hover-bg: #242d45;
+  --input-bg: #111827;
+  --dropdown-bg: rgba(15, 23, 42, 0.98);
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-inverse: #0f1419;
+
+  --border-light: #334155;
+  --border-default: #475569;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Optional smooth theme transition on the root */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body {
+    background-color: var(--body-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Autofill fixes to preserve transparency and theme */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active,
+  select:-webkit-autofill,
+  textarea:-webkit-autofill {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: var(--text-primary) !important;
+  }
+}

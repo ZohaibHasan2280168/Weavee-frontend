@@ -1,0 +1,11 @@
+Model Information:
+* title:	Parcel 01
+* source:	https://sketchfab.com/3d-models/parcel-01-cbc949af3c3e4ece8c92ea7b6c141f84
+* author:	tblunden (https://sketchfab.com/tblunden)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Parcel 01" (https://sketchfab.com/3d-models/parcel-01-cbc949af3c3e4ece8c92ea7b6c141f84) by tblunden (https://sketchfab.com/tblunden) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

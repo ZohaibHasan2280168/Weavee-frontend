@@ -1,0 +1,287 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 54276,
+      "max": [
+        6.16885232925415,
+        6.377366065979004,
+        1.8314647674560547
+      ],
+      "min": [
+        -5.730875492095947,
+        -7.412764072418213,
+        -2.438992500305176
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 651312,
+      "componentType": 5126,
+      "count": 54276,
+      "max": [
+        0.9999859929084778,
+        0.999775767326355,
+        0.999997615814209
+      ],
+      "min": [
+        -0.9999426603317261,
+        -0.9998052716255188,
+        -0.9999825954437256
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 54276,
+      "max": [
+        0.9999045133590698,
+        0.9999987483024597,
+        0.9999229311943054,
+        1.0
+      ],
+      "min": [
+        -0.9999867081642151,
+        -0.9999994039535522,
+        -0.9999573230743408,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 54276,
+      "max": [
+        0.9970161318778992,
+        0.9999423623085022
+      ],
+      "min": [
+        0.00011352822184562683,
+        1.046992838382721e-05
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 434208,
+      "componentType": 5126,
+      "count": 54276,
+      "max": [
+        0.9970161318778992,
+        0.9999423623085022
+      ],
+      "min": [
+        0.00011352822184562683,
+        1.046992838382721e-05
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 299655,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Sircher (https://sketchfab.com/Sircher)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/jeans-jacket-agisoftclotheschallenge-4348be24475c45dd9a5bdf6e62ba7ebc",
+      "title": "Jeans Jacket #AgisoftClothesChallenge"
+    },
+    "generator": "Sketchfab-12.66.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 1198620,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 868416,
+      "byteOffset": 1198620,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 1302624,
+      "byteOffset": 2067036,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 868416,
+      "byteOffset": 3369660,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 4238076,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/material0_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/material0_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/material0_normal.jpeg"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "material0",
+      "normalTexture": {
+        "index": 2
+      },
+      "occlusionTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0,
+        "metallicRoughnessTexture": {
+          "index": 1
+        },
+        "roughnessFactor": 0.9577051494623774
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Model_material0_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3,
+            "TEXCOORD_1": 4
+          },
+          "indices": 5,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        0.16518127428413187,
+        -0.00030904409008106746,
+        0.008814664312445375,
+        0.0,
+        -0.0006785123333647308,
+        0.1643798862647916,
+        0.018478090773899208,
+        0.0,
+        -0.008793943137542004,
+        -0.01848796146264013,
+        0.16414477432201124,
+        0.0,
+        0.018583709374070168,
+        -0.17633318901061992,
+        -0.8886234760284424,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "model.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "name": "Model"
+    },
+    {
+      "mesh": 0,
+      "name": "Model_material0_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ]
+}
