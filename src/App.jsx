@@ -44,10 +44,10 @@ const UpdateUser = lazy(() => import("./pages/Dashboard/User/UpdateUserPage"));
 const Role = lazy(() => import("./pages/Dashboard/User/Role"));
 const Settings = lazy(() => import("./pages/Dashboard/Profile/SettingsPage"));
 const ProfilePage = lazy(() => import("./pages/Dashboard/Profile/ProfilePage"));
-const MustChangePasswordModal = lazy(() => import("./components/modals/MustChangePasswordModal"));
+import MustChangePasswordModal from "./components/modals/MustChangePasswordModal";
 const NotificationsPage = lazy(() => import("./pages/NotificationsPage"));
 
-const ProtectedRoute = lazy(() => import("./components/auth/ProtectedRoute"));
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 const AuditLogPage = lazy(() => import("./pages/Dashboard/Audit/AuditLogPage"));
 
 import { NotificationProvider } from "./components/context/NotificationContext";

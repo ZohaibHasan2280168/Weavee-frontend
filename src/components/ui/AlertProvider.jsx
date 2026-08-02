@@ -7,7 +7,7 @@ let idCounter = 1;
 export function AlertProvider({ children }) {
   const [alerts, setAlerts] = useState([]);
 
-  const _sanitizeMessage = (raw) => {
+  const _sanitizeMessage = useCallback((raw) => {
     if (raw === undefined || raw === null) return '';
     let s = raw;
     if (typeof s === 'object') {
@@ -21,7 +21,7 @@ export function AlertProvider({ children }) {
     if (!s) return 'Server returned an error';
     if (s.length > 300) s = s.slice(0, 300) + '...';
     return s;
-  };
+  }, []);
 
   const showAlert = useCallback(({ title = 'Notice', message = '', type = 'info', duration }) => {
     const defaultDuration = duration !== undefined ? duration : (type === 'success' ? 4000 : (type === 'error' ? 7000 : 5000));

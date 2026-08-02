@@ -97,7 +97,7 @@ export const NotificationProvider = ({ children }) => {
    * Polling - fetch notifications every 30 seconds
    */
   useEffect(() => {
-    if (!user?.role) {
+    if (!user?._id) {
       return; // Only fetch notifications after a real authenticated user exists
     }
 
@@ -114,7 +114,7 @@ export const NotificationProvider = ({ children }) => {
 
     // return () => clearInterval(pollInterval);
 
-  }, [user, fetchNotifications, refreshUnreadCount]);
+  }, [user?._id, fetchNotifications]);
 
   const value = {
     notifications,

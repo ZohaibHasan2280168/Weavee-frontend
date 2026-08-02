@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FiSearch, FiArrowLeft, FiPlus, FiFilter,
@@ -10,6 +10,13 @@ import api from '../../../services/reqInterceptor';
 import { useAlert } from "../../../components/ui/AlertProvider";
 import { useAuth } from "../../../components/context/AuthContext";
 import CreateOrderRequestModal from "../../../components/modals/CreateOrderRequestModal";
+
+const formatDate = (dateStr) => {
+  if (!dateStr) return '—';
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'short', day: 'numeric', year: 'numeric'
+  });
+};
 
 const OrderRequestsPage = () => {
   const navigate = useNavigate();
@@ -64,12 +71,12 @@ const OrderRequestsPage = () => {
     return () => document.removeEventListener('mousedown', handleOutside);
   }, []);
 
-  const filteredRequests = requests.filter(r => {
+  const filteredRequests = useMemo(() => requests.filter(r => {
     const matchesSearch = r.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       r.description?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === "ALL" || r.status === statusFilter;
     return matchesSearch && matchesStatus;
-  });
+  }), [requests, searchTerm, statusFilter]);
 
   const getStatusClass = (status) => {
     switch (status) {
@@ -81,24 +88,17 @@ const OrderRequestsPage = () => {
     }
   };
 
-  const formatDate = (dateStr) => {
-    if (!dateStr) return '—';
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      month: 'short', day: 'numeric', year: 'numeric'
-    });
-  };
-
   const handleRequestCreated = () => {
     fetchRequests();
     showAlert({ title: "Success", message: "Order request created successfully!", type: "success" });
   };
 
-  const statCounts = {
+  const statCounts = useMemo(() => ({
     total: requests.length,
     pendingAdmin: requests.filter(r => r.status === 'PENDING_ADMIN').length,
     pendingClient: requests.filter(r => r.status === 'PENDING_CLIENT').length,
     converted: requests.filter(r => r.status === 'CONVERTED').length,
-  };
+  }), [requests]);
 
   return (
     <div className="h-[calc(100vh-4rem)] bg-slate-50 dark:bg-slate-950 flex flex-col overflow-hidden font-sans">

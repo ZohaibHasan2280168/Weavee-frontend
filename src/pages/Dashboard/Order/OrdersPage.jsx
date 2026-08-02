@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FiSearch, FiEdit2, FiTrash2, FiLayers,
@@ -102,12 +102,19 @@ const OrdersList = () => {
     });
   };
 
-  const filteredOrders = orders.filter(o => {
+  const filteredOrders = useMemo(() => orders.filter(o => {
     const matchesSearch = o.name?.toLowerCase().includes(searchTerm.toLowerCase()) || o.uniqueId?.includes(searchTerm);
     const matchesStatus = statusFilter === "ALL" || o.overallStatus === statusFilter;
     const matchesType = typeFilter === "ALL" || (o.type && o.type.toUpperCase() === typeFilter.toUpperCase());
     return matchesSearch && matchesStatus && matchesType;
-  });
+  }), [orders, searchTerm, statusFilter, typeFilter]);
+
+  const statCounts = useMemo(() => ({
+    total: orders.length,
+    readyToStart: orders.filter(o => o.overallStatus === 'READY_TO_START').length,
+    docsPending: orders.filter(o => o.overallStatus === 'DOCS_PENDING').length,
+    inProgress: orders.filter(o => o.overallStatus === 'IN_PROGRESS').length,
+  }), [orders]);
 
   const getStatusClass = (status) => {
     switch (status) {
@@ -154,7 +161,7 @@ const OrdersList = () => {
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-xs text-theme-text-muted uppercase tracking-wider font-medium">Total Orders</span>
-            <span className="text-3xl font-bold tracking-tight text-theme-text">{orders.length}</span>
+            <span className="text-3xl font-bold tracking-tight text-theme-text">{statCounts.total}</span>
           </div>
         </div>
         <div className="bg-theme-card border border-theme-border-light rounded-2xl p-5 flex items-center gap-4 transition-all relative overflow-hidden hover:border-theme-border hover:-translate-y-0.5 hover:shadow-xl before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-emerald-500 before:to-emerald-400">
@@ -163,7 +170,7 @@ const OrdersList = () => {
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-xs text-theme-text-muted uppercase tracking-wider font-medium">Ready to Start</span>
-            <span className="text-3xl font-bold tracking-tight text-theme-text">{orders.filter(o => o.overallStatus === 'READY_TO_START').length}</span>
+            <span className="text-3xl font-bold tracking-tight text-theme-text">{statCounts.readyToStart}</span>
           </div>
         </div>
         <div className="bg-theme-card border border-theme-border-light rounded-2xl p-5 flex items-center gap-4 transition-all relative overflow-hidden hover:border-theme-border hover:-translate-y-0.5 hover:shadow-xl before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-amber-500 before:to-amber-400">
@@ -172,7 +179,7 @@ const OrdersList = () => {
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-xs text-theme-text-muted uppercase tracking-wider font-medium">Docs Pending</span>
-            <span className="text-3xl font-bold tracking-tight text-theme-text">{orders.filter(o => o.overallStatus === 'DOCS_PENDING').length}</span>
+            <span className="text-3xl font-bold tracking-tight text-theme-text">{statCounts.docsPending}</span>
           </div>
         </div>
         <div className="bg-theme-card border border-theme-border-light rounded-2xl p-5 flex items-center gap-4 transition-all relative overflow-hidden hover:border-theme-border hover:-translate-y-0.5 hover:shadow-xl before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-purple-500 before:to-purple-400">
@@ -181,7 +188,7 @@ const OrdersList = () => {
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-xs text-theme-text-muted uppercase tracking-wider font-medium">In Production</span>
-            <span className="text-3xl font-bold tracking-tight text-theme-text">{orders.filter(o => o.overallStatus === 'IN_PROGRESS').length}</span>
+            <span className="text-3xl font-bold tracking-tight text-theme-text">{statCounts.inProgress}</span>
           </div>
         </div>
       </div>

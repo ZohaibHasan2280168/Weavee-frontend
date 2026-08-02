@@ -30,51 +30,18 @@ const Navbar = () => {
 
   const { logout, user: authUser } = useAuth();
   const { theme, toggleTheme } = useTheme();
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-    profilePic: null
-  });
 
-  // Handle responsive behavior
+
+  // Handle responsive behavior efficiently using matchMedia
   useEffect(() => {
-    const checkScreenSize = () => setIsMobile(window.innerWidth <= 768);
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
   }, []);
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) return;
 
-    const fetchProfile = async () => {
-      try {
-        const res = await api.get("/profile");
-
-        setUser({
-          name: res.data.name,
-          email: res.data.email,
-          profilePic: res.data.profilePic || null,
-          avatar: res.data.avatar || null
-        });
-      } catch (err) {
-        console.error("Error fetching profile:", err);
-
-        if (err.response?.status === 401) {
-          await logout();
-          const loginPath = window.location.pathname.includes("admin")
-            ? "/admin-login"
-            : window.location.pathname.includes("moderator")
-              ? "/moderator-login"
-              : "/";
-          navigate(loginPath);
-        }
-      }
-    };
-
-    fetchProfile();
-  }, []);
 
   // Close profile dropdown on outside click
   useEffect(() => {
@@ -157,12 +124,8 @@ const Navbar = () => {
             >
               {authUser?.avatar?.url ? (
                 <img className="w-full h-full object-cover" src={authUser.avatar.url} alt="Profile" />
-              ) : user.avatar?.url ? (
-                <img className="w-full h-full object-cover" src={user.avatar.url} alt="Profile" />
-              ) : user.profilePic ? (
-                <img className="w-full h-full object-cover" src={user.profilePic} alt="Profile" />
               ) : (
-                <span>{user.name ? user.name.charAt(0).toUpperCase() : "U"}</span>
+                <span>{authUser?.name ? authUser.name.charAt(0).toUpperCase() : "U"}</span>
               )}
             </div>
 

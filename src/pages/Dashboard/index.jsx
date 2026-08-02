@@ -1,4 +1,4 @@
-"use client";
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/reqInterceptor";
@@ -27,21 +27,7 @@ export default function Dashboard() {
   const { user, mustChangePassword } = useAuth();
   const navigate = useNavigate();
 
-  // Initial states for all charts
-  const initialUserStats = [
-    { name: "Admin", value: 0, backendKey: "ADMIN", color: "rgb(0, 136, 254)" },
-    { name: "Client", value: 0, backendKey: "CLIENT", color: "rgb(0, 196, 159)" },
-    { name: "QC Member", value: 0, backendKey: "QC_MEMBER", color: "rgb(255, 187, 40)" },
-    { name: "Department Head", value: 0, backendKey: "DEPT_HEAD", color: "rgb(168, 85, 247)" },
-  ];
 
-  const initialOrderStats = [
-    { name: "Draft", value: 0, color: "rgb(148, 163, 184)" },
-    { name: "Docs Pending", value: 0, color: "rgb(245, 158, 11)" },
-    { name: "Ready to Start", value: 0, color: "rgb(16, 185, 129)" },
-    { name: "In Progress", value: 0, color: "rgb(59, 130, 246)" },
-    { name: "Completed", value: 0, color: "rgb(139, 92, 246)" },
-  ];
 
   const [userStats, setUserStats] = useState(initialUserStats);
   const [departmentStats, setDepartmentStats] = useState([]);

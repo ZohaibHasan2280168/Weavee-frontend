@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   FiDownload as Download,
@@ -30,6 +30,12 @@ import FilePreviewModal from './components/FilePreviewModal';
 import uploadToCloudinary from '../../../utils/uploadToCloudinary';
 import { getFileIcon } from '../../../utils/fileUtils';
 
+const STATUS_COLOR = {
+  UPLOADED: 'status-uploaded',
+  APPROVED: 'status-approved',
+  REJECTED: 'status-rejected',
+  PENDING: 'status-pending',
+};
 
 const OrderDetailPage = () => {
   const { orderId } = useParams();
@@ -44,15 +50,7 @@ const OrderDetailPage = () => {
   const [activeDeptIndex, setActiveDeptIndex] = useState(0);
   const [checkpointPreview, setCheckpointPreview] = useState(null);
 
-
-  const statusColor = {
-    UPLOADED: 'status-uploaded',
-    APPROVED: 'status-approved',
-    REJECTED: 'status-rejected',
-    PENDING: 'status-pending',
-  };
-
-  const fetchOrderDetails = async () => {
+  const fetchOrderDetails = useCallback(async () => {
     try {
       const res = await api.get(`/order/${orderId}`);
       const orderData = res.data.order || res.data;
@@ -62,11 +60,11 @@ const OrderDetailPage = () => {
       toast.error('Failed to load order details');
       setLoading(false);
     }
-  };
+  }, [orderId]);
 
   useEffect(() => {
     fetchOrderDetails();
-  }, [orderId]);
+  }, [fetchOrderDetails]);
 
   //final approve checkpoint (new API integration)
   const handleFinalApproveCheckpoint = async (checkpointId, operationId) => {
@@ -153,7 +151,7 @@ const OrderDetailPage = () => {
 
 
   const getStatusStyle = (status) => {
-    return statusColor[status] || 'status-pending';
+    return STATUS_COLOR[status] || 'status-pending';
   };
 
   const formatDate = (dateString) => {
@@ -178,16 +176,13 @@ const OrderDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0f1d] p-6 md:p-10 font-sans text-slate-900 dark:text-slate-200 transition-colors duration-200">
-      {/* File Preview Modals */}
+      {/* File Preview Modal */}
       <FilePreviewModal
-        previewDoc={previewDoc} // same logic, previewDoc can be { fileUrl: string, docType: string }
-        onClose={() => setPreviewDoc(null)}
-        onDownload={handleDownload}
-      />
-
-      <FilePreviewModal
-        previewDoc={checkpointPreview} // already a file object from Cloudinary
-        onClose={() => setCheckpointPreview(null)}
+        previewDoc={previewDoc || checkpointPreview}
+        onClose={() => {
+          setPreviewDoc(null);
+          setCheckpointPreview(null);
+        }}
         onDownload={handleDownload}
       />
 

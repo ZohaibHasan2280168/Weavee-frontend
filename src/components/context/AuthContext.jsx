@@ -1,4 +1,4 @@
-"use client";
+
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import authService from "../../services/authService";
 import { requestForToken } from "../../utils/firebaseConfig";
@@ -63,10 +63,12 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const updateAvatar = useCallback(({ url, publicId }) => {
-    const updatedUser = { ...user, avatar: { url, publicId } };
-    setUser(updatedUser);
-    localStorage.setItem("user", JSON.stringify(updatedUser));
-  }, [user]);
+    setUser(prev => {
+      const updatedUser = { ...prev, avatar: { url, publicId } };
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      return updatedUser;
+    });
+  }, []);
 
   return (
     <AuthContext.Provider

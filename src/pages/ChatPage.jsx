@@ -607,17 +607,22 @@ export default function ChatPage() {
     }
   }, [loadOlderMessages]);
 
-  const handleSearch = useCallback(async (q) => {
+  const searchTimerRef = useRef(null);
+  const handleSearch = useCallback((q) => {
     setSearchQuery(q);
+    clearTimeout(searchTimerRef.current);
     if (!q.trim()) { setSearchResults([]); return; }
-    try {
-      const res = await api.get(
-        `/chat/users/search?query=${encodeURIComponent(q)}`
-      );
-      setSearchResults(res.data.users || []);
-    } catch (e) {
-      console.error("User search failed:", e);
-    }
+    
+    searchTimerRef.current = setTimeout(async () => {
+      try {
+        const res = await api.get(
+          `/chat/users/search?query=${encodeURIComponent(q)}`
+        );
+        setSearchResults(res.data.users || []);
+      } catch (e) {
+        console.error("User search failed:", e);
+      }
+    }, 350);
   }, []);
 
   const startDirectChat = useCallback(

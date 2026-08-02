@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   FiArrowLeft, FiPlus, FiCheckCircle, FiClock,
@@ -11,6 +11,24 @@ import { useAlert } from "../../../components/ui/AlertProvider";
 import { useAuth } from "../../../components/context/AuthContext";
 import AddProposalModal from "../../../components/modals/AddProposalModal";
 
+const pkrFormatter = new Intl.NumberFormat('en-PK', {
+  style: 'currency',
+  currency: 'PKR',
+  maximumFractionDigits: 0
+});
+
+const formatDate = (dateStr) => {
+  if (!dateStr) return '—';
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'short', day: 'numeric', year: 'numeric'
+  });
+};
+
+const formatCurrency = (amount) => {
+  if (!amount && amount !== 0) return '—';
+  return pkrFormatter.format(amount);
+};
+
 const OrderRequestDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,8 +40,8 @@ const OrderRequestDetailPage = () => {
   const [converting, setConverting] = useState(false);
   const [showProposalModal, setShowProposalModal] = useState(false);
 
-  const isAdmin = authUser?.role === 'ADMIN' || authUser?.role === 'MODERATOR';
-  const isClient = authUser?.role === 'CLIENT';
+  const isAdmin = useMemo(() => authUser?.role === 'ADMIN' || authUser?.role === 'MODERATOR', [authUser?.role]);
+  const isClient = useMemo(() => authUser?.role === 'CLIENT', [authUser?.role]);
 
   const fetchRequest = async () => {
     try {
@@ -69,18 +87,6 @@ const OrderRequestDetailPage = () => {
     showAlert({ title: "Success", message: "Proposal submitted successfully!", type: "success" });
   };
 
-  const formatDate = (dateStr) => {
-    if (!dateStr) return '—';
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      month: 'short', day: 'numeric', year: 'numeric'
-    });
-  };
-
-  const formatCurrency = (amount) => {
-    if (!amount && amount !== 0) return '—';
-    return new Intl.NumberFormat('en-PK', { style: 'currency', currency: 'PKR', maximumFractionDigits: 0 }).format(amount);
-  };
-
   const getStatusClass = (status) => {
     switch (status) {
       case 'PENDING_ADMIN': return 'bg-amber-100 text-amber-800 dark:bg-amber-500/10 dark:text-amber-500 border border-amber-200 dark:border-amber-500/20';
@@ -92,20 +98,20 @@ const OrderRequestDetailPage = () => {
   };
 
   // Determine who should act next
-  const canAddProposal = () => {
+  const canAddProposal = useMemo(() => {
     if (!request) return false;
     if (request.status === 'CONVERTED' || request.status === 'CANCELED') return false;
     if (isAdmin && request.status === 'PENDING_ADMIN') return true;
     if (isClient && request.status === 'PENDING_CLIENT') return true;
     return false;
-  };
+  }, [request, isAdmin, isClient]);
 
-  const canConvert = () => {
+  const canConvert = useMemo(() => {
     if (!request) return false;
     if (!isAdmin) return false;
     if (request.status === 'CONVERTED' || request.status === 'CANCELED') return false;
     return request.proposals && request.proposals.length > 0;
-  };
+  }, [request, isAdmin]);
 
   const statusSteps = [
     { key: 'PENDING_ADMIN', label: 'Pending Admin Review', icon: <FiClock size={14} /> },
@@ -174,7 +180,7 @@ const OrderRequestDetailPage = () => {
         </div>
         
         <div className="flex items-center gap-3">
-          {canAddProposal() && (
+          {canAddProposal && (
             <button 
               className="flex items-center gap-2 px-4 py-2 bg-brand-primary text-white text-sm font-semibold rounded-xl hover:bg-brand-secondary transition-all shadow-md shadow-brand-primary/20 hover:-translate-y-0.5" 
               onClick={() => setShowProposalModal(true)}
@@ -183,7 +189,7 @@ const OrderRequestDetailPage = () => {
               Add Proposal
             </button>
           )}
-          {canConvert() && (
+          {canConvert && (
             <button
               className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white text-sm font-semibold rounded-xl hover:bg-emerald-600 transition-all shadow-md shadow-emerald-500/20 hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0 disabled:cursor-not-allowed"
               onClick={handleConvert}

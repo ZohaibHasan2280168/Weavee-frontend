@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../../services/reqInterceptor";
 import BackButton from "../../../components/ui/BackButton";
@@ -40,7 +40,6 @@ const DepartmentIcon = () => (
 
 const Departments = () => {
   const [departments, setDepartments] = useState([]);
-  const [filteredDepartments, setFilteredDepartments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -54,7 +53,6 @@ const Departments = () => {
     try {
       const res = await api.get(`/departments`);
       setDepartments(res.data || []);
-      setFilteredDepartments(res.data || []);
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.message || "Failed to fetch departments";
       setError(errorMessage);
@@ -67,8 +65,25 @@ const Departments = () => {
     fetchDepartments();
   }, []);
 
-  useEffect(() => {
-    filterDepartments();
+  const filteredDepartments = useMemo(() => {
+    let filtered = [...departments];
+
+    if (searchTerm) {
+      const q = searchTerm.toLowerCase();
+      filtered = filtered.filter(dept =>
+        dept.name?.toLowerCase().includes(q) ||
+        dept.description?.toLowerCase().includes(q) ||
+        (dept.departmentHead?.name?.toLowerCase().includes(q))
+      );
+    }
+
+    if (statusFilter !== "ALL") {
+      filtered = filtered.filter(dept => 
+        (dept.status || "INACTIVE").toUpperCase() === statusFilter
+      );
+    }
+
+    return filtered;
   }, [departments, searchTerm, statusFilter]);
 
   // Status dropdown state/ref for custom dropdown
@@ -98,33 +113,11 @@ const Departments = () => {
 
   const statusLabel = statusFilter === 'ALL' ? 'All Status' : statusFilter === 'ACTIVE' ? 'Active' : 'Inactive';
 
-  const filterDepartments = () => {
-    let filtered = [...departments];
-
-    // Apply search filter
-    if (searchTerm) {
-      filtered = filtered.filter(dept =>
-        dept.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        dept.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (dept.departmentHead?.name?.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
-    }
-
-    // Apply status filter
-    if (statusFilter !== "ALL") {
-      filtered = filtered.filter(dept => 
-        (dept.status || "INACTIVE").toUpperCase() === statusFilter
-      );
-    }
-
-    setFilteredDepartments(filtered);
-  };
-
   const handleDetailView = (deptId) => {
     navigate(`/department-detail/${deptId}`);
   };
 
-  const getStats = () => {
+  const stats = useMemo(() => {
     const active = departments.filter(d => (d.status || "INACTIVE").toUpperCase() === "ACTIVE").length;
     const inactive = departments.filter(d => (d.status || "INACTIVE").toUpperCase() === "INACTIVE").length;
     const withHeads = departments.filter(d => d.departmentHead).length;
@@ -135,9 +128,7 @@ const Departments = () => {
       inactive,
       withHeads
     };
-  };
-
-  const stats = getStats();
+  }, [departments]);
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans">
