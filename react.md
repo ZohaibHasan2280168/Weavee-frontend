@@ -1,4 +1,4 @@
-"Act as a Senior Frontend Developer and UI/UX Expert. We are migrating our project, 'Darzi Flow,' from vanilla CSS to Tailwind CSS v4.
+"Act as a Senior Frontend Developer and UI/UX Expert. We are migrating our project, 'Weave,' from vanilla CSS to Tailwind CSS v4.
 
 The Goal:
 

@@ -26,10 +26,10 @@ export default function RoleSelection() {
       <div className="relative w-full max-w-md bg-white/80 dark:bg-[#0a1128]/80 backdrop-blur-2xl border border-slate-200 dark:border-slate-800/60 rounded-3xl p-8 sm:p-10 shadow-xl dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-colors duration-300 z-30">
         <div className="text-center mb-10">
           <div className="inline-block px-4 py-1.5 rounded-full bg-brand-primary/10 dark:bg-brand-primary/20 border border-brand-primary/20 dark:border-brand-primary/30 text-brand-primary text-sm font-semibold tracking-wide mb-6 shadow-sm dark:shadow-[0_0_15px_rgba(79,70,229,0.2)]">
-            DarziFlow
+            Weave
           </div>
           <h1 className="text-4xl font-extrabold mb-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 dark:from-indigo-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent tracking-tight">
-            Welcome to<br />DarziFlow
+            Welcome to<br />Weave
           </h1>
           <p className="text-slate-500 dark:text-slate-400 text-sm">Choose your role to get started</p>
         </div>

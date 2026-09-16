@@ -9,6 +9,7 @@ import {
 import api from '../../../services/reqInterceptor';
 import EditOrderModal from "../../../components/modals/EditOrderModal";
 import CreateOrderModal from "../../../components/modals/CreateOrderModal";
+import ConfirmModal from "../../../components/ui/ConfirmModal";
 import { useAlert } from "../../../components/ui/AlertProvider";
 
 const OrdersList = () => {
@@ -28,6 +29,7 @@ const OrdersList = () => {
   const typeRef = useRef(null);
 
   const [showAddModal, setShowAddModal] = useState(false);
+  const [deleteTargetId, setDeleteTargetId] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
   const [orderToEdit, setOrderToEdit] = useState(null);
 
@@ -73,23 +75,28 @@ const OrdersList = () => {
     };
   }, []);
 
-  const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this order? This action cannot be undone.")) {
-      try {
-        await api.delete(`/order/${id}`);
-        fetchData();
-        showAlert({
-          title: "Success",
-          message: "Order deleted successfully",
-          type: "success"
-        });
-      } catch (err) {
-        showAlert({
-          title: "Error",
-          message: err.response?.data?.message || "Failed to delete order",
-          type: "error"
-        });
-      }
+  const handleDelete = (id) => {
+    setDeleteTargetId(id);
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteTargetId) return;
+    const id = deleteTargetId;
+    setDeleteTargetId(null);
+    try {
+      await api.delete(`/order/${id}`);
+      fetchData();
+      showAlert({
+        title: "Success",
+        message: "Order deleted successfully",
+        type: "success"
+      });
+    } catch (err) {
+      showAlert({
+        title: "Error",
+        message: err.response?.data?.message || "Failed to delete order",
+        type: "error"
+      });
     }
   };
 
@@ -356,6 +363,17 @@ const OrdersList = () => {
         orderData={orderToEdit}
         onUpdateSuccess={fetchData}
         departments={departments}
+      />
+
+      <ConfirmModal
+        open={Boolean(deleteTargetId)}
+        title="Delete Order"
+        message="Are you sure you want to delete this order? This action cannot be undone."
+        confirmText="Delete"
+        cancelText="Cancel"
+        type="danger"
+        onConfirm={confirmDelete}
+        onCancel={() => setDeleteTargetId(null)}
       />
     </div>
   );

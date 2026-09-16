@@ -134,7 +134,7 @@ const Navbar = () => {
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/dashboard")}
           >
-            <h2 className="font-bold text-2xl tracking-tight text-brand-primary">DarziFlow</h2>
+            <h2 className="font-bold text-2xl tracking-tight text-brand-primary">Weave</h2>
           </div>
         </div>
 

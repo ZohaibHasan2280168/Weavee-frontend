@@ -1,50 +1,43 @@
 import React from 'react';
 
-export default function ConfirmModal({ open, title = 'Confirm', message = '', onConfirm = () => {}, onCancel = () => {} }) {
+export default function ConfirmModal({
+  open,
+  title = 'Confirm Action',
+  message = '',
+  confirmText = 'Confirm',
+  cancelText = 'Cancel',
+  type = 'primary', // 'primary' | 'danger'
+  onConfirm = () => {},
+  onCancel = () => {}
+}) {
   if (!open) return null;
 
   return (
-    <div className="confirm-overlay" role="dialog" aria-modal="true" aria-label={title}>
-      <div className="confirm-box">
-        <h3 className="confirm-title">{title}</h3>
-        <p className="confirm-message">{message}</p>
-        <div className="confirm-actions">
-          <button className="btn btn-cancel" onClick={onCancel}>Cancel</button>
-          <button className="btn btn-confirm" onClick={onConfirm}>Delete</button>
+    <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" role="dialog" aria-modal="true" aria-label={title}>
+      <div className="w-full max-w-md bg-white dark:bg-[#0d1936] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-2xl space-y-4">
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white">{title}</h3>
+        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{message}</p>
+        <div className="flex items-center justify-end gap-3 pt-2">
+          <button
+            type="button"
+            className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition-all cursor-pointer"
+            onClick={onCancel}
+          >
+            {cancelText}
+          </button>
+          <button
+            type="button"
+            className={`px-4 py-2 text-sm font-bold text-white rounded-xl transition-all shadow-md cursor-pointer ${
+              type === 'danger'
+                ? 'bg-rose-600 hover:bg-rose-500 shadow-rose-600/20'
+                : 'bg-brand-primary hover:bg-indigo-600 shadow-brand-primary/20'
+            }`}
+            onClick={onConfirm}
+          >
+            {confirmText}
+          </button>
         </div>
       </div>
-
-      <style jsx>{`
-        .confirm-overlay {
-          position: fixed;
-          inset: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(2,6,23,0.6);
-          z-index: 10000;
-          padding: 20px;
-        }
-        .confirm-box {
-          width: 100%;
-          max-width: 520px;
-          background: #ffffff; /* White themed box */
-          color: #0f172a; /* Dark text */
-          border-radius: 12px;
-          padding: 22px;
-          box-shadow: 0 8px 30px rgba(2,6,23,0.35);
-        }
-        .confirm-title { margin: 0 0 8px 0; font-size: 18px; font-weight: 700; }
-        .confirm-message { margin: 0 0 18px 0; color: #334155; line-height: 1.4; }
-        .confirm-actions { display:flex; gap: 10px; justify-content: flex-end; }
-        .btn { padding: 8px 14px; border-radius: 8px; font-weight: 600; cursor: pointer; border: none; }
-        .btn-cancel { background: transparent; color: #334155; border: 1px solid #e6eef8; }
-        .btn-confirm { background: #ef4444; color: white; }
-        @media (max-width: 480px) {
-          .confirm-box { padding: 16px; }
-          .confirm-actions { justify-content: center; }
-        }
-      `}</style>
     </div>
   );
 }

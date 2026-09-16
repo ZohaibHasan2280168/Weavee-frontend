@@ -10,6 +10,7 @@ import api from '../../../services/reqInterceptor';
 import { useAlert } from "../../../components/ui/AlertProvider";
 import { useAuth } from "../../../components/context/AuthContext";
 import AddProposalModal from "../../../components/modals/AddProposalModal";
+import ConfirmModal from "../../../components/ui/ConfirmModal";
 
 const OrderRequestDetailPage = () => {
   const { id } = useParams();
@@ -21,6 +22,7 @@ const OrderRequestDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [converting, setConverting] = useState(false);
   const [showProposalModal, setShowProposalModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const isAdmin = authUser?.role === 'ADMIN' || authUser?.role === 'MODERATOR';
   const isClient = authUser?.role === 'CLIENT';
@@ -44,9 +46,12 @@ const OrderRequestDetailPage = () => {
     fetchRequest();
   }, [id]);
 
-  const handleConvert = async () => {
-    if (!window.confirm("Are you sure you want to convert this request into an Order? This will use the latest proposal details.")) return;
+  const handleConvert = () => {
+    setShowConfirmModal(true);
+  };
 
+  const confirmConvert = async () => {
+    setShowConfirmModal(false);
     try {
       setConverting(true);
       await api.post(`/requests/${id}/convert`);
@@ -515,6 +520,18 @@ const OrderRequestDetailPage = () => {
           onProposalAdded={handleProposalAdded}
         />
       )}
+
+      {/* Convert to Order Confirm Modal */}
+      <ConfirmModal
+        open={showConfirmModal}
+        title="Convert to Order"
+        message="Are you sure you want to convert this request into an Order? This will use the latest proposal details."
+        confirmText="Convert"
+        cancelText="Cancel"
+        type="primary"
+        onConfirm={confirmConvert}
+        onCancel={() => setShowConfirmModal(false)}
+      />
     </div>
   );
 };

@@ -61,7 +61,7 @@ export default function ScrollVideoHero() {
             </span>
           </h1>
           <p className="mt-4 text-slate-300 text-lg md:text-xl max-w-xl font-light drop-shadow">
-            DarziFlow automates garment manufacturing with stage-wise order tracking, real-time QC approvals, and factory-level precision.
+            Weave automates garment manufacturing with stage-wise order tracking, real-time QC approvals, and factory-level precision.
           </p>
         </div>
 

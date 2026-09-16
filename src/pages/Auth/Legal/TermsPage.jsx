@@ -41,14 +41,14 @@ export default function TermsPage() {
           <div className="border-l-2 border-purple-500 pl-4 py-1 bg-purple-500/5 rounded-r-lg">
             <h2 className="text-base font-semibold text-purple-600 dark:text-purple-400 mb-2">1. Acceptance of Terms</h2>
             <p>
-              By accessing or using DarziFlow (the "Service"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the application.
+              By accessing or using Weave (the "Service"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the application.
             </p>
           </div>
 
           <div className="border-l-2 border-purple-500 pl-4 py-1">
             <h2 className="text-base font-semibold text-purple-600 dark:text-purple-400 mb-2">2. Description of Service</h2>
             <p>
-              DarziFlow provides a digital management platform for garment manufacturing. We act solely as a software provider; we are not responsible for the quality of physical manufacturing services, fabric handling, or transactions between manufacturers and their clients.
+              Weave provides a digital management platform for garment manufacturing. We act solely as a software provider; we are not responsible for the quality of physical manufacturing services, fabric handling, or transactions between manufacturers and their clients.
             </p>
           </div>
 
@@ -57,7 +57,7 @@ export default function TermsPage() {
             <ul className="list-disc list-inside space-y-1.5 text-slate-500 dark:text-slate-400">
               <li>You must provide accurate and complete information during registration.</li>
               <li>You are responsible for maintaining the security of your account and password.</li>
-              <li>DarziFlow is not liable for any loss or damage arising from your failure to protect your login credentials.</li>
+              <li>Weave is not liable for any loss or damage arising from your failure to protect your login credentials.</li>
             </ul>
           </div>
 
@@ -82,7 +82,7 @@ export default function TermsPage() {
           <div className="border-l-2 border-purple-500 pl-4 py-1">
             <h2 className="text-base font-semibold text-purple-600 dark:text-purple-400 mb-2">6. Limitation of Liability</h2>
             <p>
-              DarziFlow is provided "as is." We are not liable for any business interruptions, loss of client data, or financial losses resulting from the use or inability to use the app.
+              Weave is provided "as is." We are not liable for any business interruptions, loss of client data, or financial losses resulting from the use or inability to use the app.
             </p>
           </div>
 

@@ -7,8 +7,8 @@ export default function RoleSelection() {
     <div className="min-h-screen flex-center modern-bg">
       <div className="container">
         <div className="text-center mb-12">
-          <div className="logo-badge mb-6">DarziFlow</div>
-          <h1 className="main-title mb-3">Welcome to DarziFlow</h1>
+          <div className="logo-badge mb-6">Weave</div>
+          <h1 className="main-title mb-3">Welcome to Weave</h1>
           <p className="subtitle">Choose your role to get started</p>
         </div>
 

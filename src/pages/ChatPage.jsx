@@ -256,7 +256,7 @@ const EmptyState = () => (
     <div className="w-24 h-24 mb-6 text-brand-primary/50 flex items-center justify-center bg-brand-primary/5 rounded-full">
       <FiMessageSquare size={64} />
     </div>
-    <h2 className="text-2xl font-bold text-theme-text mb-2">DarziFlow Messenger</h2>
+    <h2 className="text-2xl font-bold text-theme-text mb-2">Weave Messenger</h2>
     <p className="text-theme-text-secondary max-w-sm mb-8 leading-relaxed">Select a conversation from the list or search for a user to start a new chat.</p>
     <div className="px-4 py-1.5 bg-brand-primary/10 text-brand-primary rounded-full text-sm font-medium">End-to-end secure messaging</div>
   </div>

@@ -36,7 +36,7 @@ export default function LandingPage() {
       {/* Sticky Glassmorphic Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-5 border-b border-slate-800/60 bg-slate-950/40 backdrop-blur-xl">
         <div className="text-2xl font-black tracking-wider text-cyan-400 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          DARZI<span className="text-white">FLOW</span>
+          WEAVE
         </div>
         <div className="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
           <a href="#flow" className="hover:text-cyan-400 transition">3D Production Flow</a>
@@ -91,12 +91,12 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 3. ABOUT DARZIFLOW */}
+      {/* 3. ABOUT WEAVE */}
       <section id="about" className="py-24 bg-slate-900/30 border-y border-slate-800/80">
         <div className="max-w-5xl mx-auto px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Built for Modern Apparel Manufacturers</h2>
           <p className="text-slate-300 text-lg leading-relaxed max-w-3xl mx-auto">
-            At DarziFlow, we revolutionize the garment production ecosystem by replacing fragmented manual processes with an advanced, role-based production management system designed specifically for tailoring houses.
+            At Weave, we revolutionize the garment production ecosystem by replacing fragmented manual processes with an advanced, role-based production management system designed specifically for tailoring houses.
           </p>
         </div>
       </section>
@@ -106,9 +106,9 @@ export default function LandingPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div>
             <h2 className="text-4xl font-extrabold text-white mb-4">Transform Your Factory Floor</h2>
-            <p className="text-slate-400 mb-8">Get in touch with our team to set up DarziFlow production engine for your business.</p>
+            <p className="text-slate-400 mb-8">Get in touch with our team to set up Weave production engine for your business.</p>
             <div className="space-y-4 text-slate-300">
-              <div className="flex items-center gap-4"><Mail className="text-cyan-400"/> support@darziflow.com</div>
+              <div className="flex items-center gap-4"><Mail className="text-cyan-400"/> support@weave.com</div>
               <div className="flex items-center gap-4"><Phone className="text-cyan-400"/> +92 300 1234567</div>
               <div className="flex items-center gap-4"><MapPin className="text-cyan-400"/> Karachi, Pakistan</div>
             </div>

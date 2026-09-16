@@ -109,7 +109,7 @@ export default function PrivacyPage() {
               6. Contact Us
             </h2>
             <p>
-              If you have any questions regarding these policies, please contact us at: <a href="mailto:support@darziflow.com" className="text-indigo-400 hover:text-indigo-300 transition-colors">support@darziflow.com</a>
+              If you have any questions regarding these policies, please contact us at: <a href="mailto:support@weave.com" className="text-indigo-400 hover:text-indigo-300 transition-colors">support@weave.com</a>
             </p>
           </section>
 
